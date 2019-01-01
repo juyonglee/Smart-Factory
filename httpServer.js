@@ -15,3 +15,9 @@ http.listen(4000, "localhost", function(){
 http.on('connection', function(socket){
     console.log('HTTP Connection...');
 });
+
+io.on('connection', function(client_socket){
+    console.log("Socket.IO Connection Event");
+    console.log(client_socket.id);
+    io.emit('id_registration', client_socket.id);
+});
