@@ -10,7 +10,11 @@ const server = net.createServer((client) => {
   });
   
   client.on('data', function (data) {
-    console.log(data.toString());
+    if(chatting_socket != null) {
+      //  Chatting Server로 Device에서 전송받은 데이터 전송
+      console.log(chatting_socket.id, "-> Chatting Server", '[Data:', data.toString(), ']');
+      chatting_socket.emit('Device_Monitoring_Data', {id: chatting_socket.id, data: data.toString()});
+    }
   });
 }).listen(8124, '127.0.0.1', () => {
   console.log('Device Server Listening...');
