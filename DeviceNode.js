@@ -19,6 +19,11 @@ client.on('ready', function () {
     }, 1000);
 });
 
+client.on('Device_Setting', function(settingInfo){
+    console.log("[Device Setting]");
+    console.log(settingInfo);
+});
+
 client.on('end', () => {
     console.log('Disconnected from Device Server!');
 });
