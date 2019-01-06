@@ -4,9 +4,14 @@ var sampleData = "5b04016e02020202020202020202000000006f000000010002000000000000
 var sampleBuffer = Buffer.alloc(sampleData.length, sampleData, "hex");
 console.log(sampleBuffer);
 protocol(sampleBuffer);
+var object = {};
 
 //  Private Method
-function protocol(data) {
+function protocol(data, object) {
     console.log('[집진기 Protocol]');
+    object['m_byStart'] = data.readUInt8(0).toString(16);
+    object['m_byCmd'] = data.readUInt8(1).toString(16);
+    
     console.log('m_byStart:', data.readUInt8(0).toString(16));
+    console.log('m_byCmd:', data.readUInt8(1).toString(16));
 }
