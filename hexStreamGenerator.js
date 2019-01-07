@@ -1,6 +1,5 @@
 
 function stringToHex(value) {
-    // console.log(parseInt(value).toString(16));
     return parseInt(value);
 }
 
@@ -18,14 +17,11 @@ module.exports.jsonToHex = function jsonToBuffer(jsonData) {
     }
     buffer.writeUInt16LE(stringToHex(parsedData['m_wS_mode']), 14);
     buffer.writeUInt16LE(stringToHex(parsedData['m_wM_status']), 16);
-    console.log('length: ',parsedData['m_waCurrent_nowx10'].length);
     for(var i=0; i<parsedData['m_waCurrent_nowx10'].length; i++) {
         buffer.writeUInt16LE(stringToHex(parsedData['m_waCurrent_nowx10'][i]), 18+(i*2));
     }
     buffer.writeUInt16LE(stringToHex(parsedData['m_wPressure']), 26);
     buffer.writeUInt16LE(stringToHex(parsedData['m_wParam_runtime']), 28);
-    console.log(buffer);
-    console.log('Setting PRARAM');
     //  Setting PRARAM
     buffer.writeUInt8(stringToHex(parsedData['m_stRunParam']['m_byMode']), 30);
     buffer.writeUInt8(stringToHex(parsedData['m_stRunParam']['m_byOver_current']), 31);
